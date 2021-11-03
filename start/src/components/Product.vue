@@ -4,10 +4,10 @@
       <!-- top bar -->
       <div class="bar">
         <div class="btnHolder">
-          <button class="barActive">
+          <button @click="layout = 'grid'" :class="{barActive: layout === 'grid'}">
             <i class="fas fa-th"></i> Grid
           </button>
-          <button>
+          <button @click="layout = 'list'" :class="{barActive: layout === 'list'}">
             <i class="fas fa-list"></i> List
           </button>
         </div>
@@ -15,7 +15,7 @@
       <!-- content -->
       <div class="content">
         <!-- grid view -->
-        <ul class="grid">
+        <ul v-if="layout === 'grid'" class="grid">
           <li v-for="content in contents" :key="content.id">
             <div class="image">
               <img :src="content.imageSrc" />
@@ -23,7 +23,7 @@
           </li>
         </ul>
         <!-- list view -->
-        <ul class="list" style="display: none">
+        <ul v-if="layout ==='list'" class="list">
           <li v-for="content in contents" :key="content.id">
             <img :src="content.imageSrc" />
             <div class="listContent">
